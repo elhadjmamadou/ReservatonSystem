@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .auth-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2, h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            margin: 0.5rem;
+        }
+        button:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+        strong {
+            color: #d9534f;
+        }
+    </style>
+    <div class="auth-container">
+        <h2>SYSTEME D'AUTHENTIFICATION</h2>
+        {% for message in messages %}
+        <strong>{{ message }}</strong>
+        {% endfor %}
+        {% if user.is_authenticated %}
+            <h3>BONJOUR {{ firstname }} BIENVENUE SUR MON SYSTEME D'AUTHENTIFICATION</h3>
+            <button type="submit"><a href="/logout">SE DECONNECTER</a></button>
+            <button type="submit"><a href="/profile">VOIR MON PROFIL</a></button>
+        {% else %}
+            <button type="submit"><a href="/register">S'ENREGISTRER</a></button>
+            <button type="submit"><a href="/login">SE CONNECTER</a></button>
+        {% endif %}
+    </div>
+{% endblock %}

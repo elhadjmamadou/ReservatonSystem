@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .auth-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h4 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 0.5rem 0 0.25rem;
+            color: #555;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+            outline: none;
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        strong {
+            color: #d9534f;
+        }
+        @media (max-width: 768px) {
+            .auth-container {
+                padding: 1rem;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+    <div class="auth-container">
+        <h4>SE CONNECTER ICI</h4>
+        {% for message in messages %}
+        <strong>{{ message }}</strong>
+        {% endfor %}
+        <form method="post" action="/login">
+            {% csrf_token %}
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" name="username" id="username" placeholder="Entrez votre nom d'utilisateur" required>
+
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" required>
+
+            <p><a href="{% url 'password_reset' %}" style="color: red;">Mot de passe oublié?</a></p>
+            
+            <button type="submit">CONNEXION</button>
+        </form>
+    </div>
+{% endblock %}

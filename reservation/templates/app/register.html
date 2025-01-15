@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .auth-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h4 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 0.5rem 0 0.25rem;
+            color: #555;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+        strong {
+            color: #d9534f;
+        }
+    </style>
+
+    <div class="auth-container">
+        <h4>S'ENREGISTRER ICI</h4>
+        {% for message in messages %}
+        <strong>{{ message }}</strong>
+        {% endfor %}
+        <form method="post" action="/register">
+            {% csrf_token %}
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" name="username" id="username" placeholder="Entrez votre nom d'utilisateur" required>
+            
+            <label for="firstname">Prénom</label>
+            <input type="text" name="firstname" id="firstname" placeholder="Entrez votre prénom" required>
+            
+            <label for="lastname">Nom de famille</label>
+            <input type="text" name="lastname" id="lastname" placeholder="Entrez votre nom de famille" required>
+            
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Entrez votre email" required>
+            
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" required>
+            
+            <label for="password1">Confirmer le mot de passe</label>
+            <input type="password" name="password1" id="password1" placeholder="Confirmez votre mot de passe" required>
+            
+            <button type="submit">ENREGISTRER</button>
+        </form>
+    </div>
+{% endblock %}

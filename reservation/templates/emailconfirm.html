@@ -1,0 +1,7 @@
+{% autoescape off %}
+BIENVENUE SUR LE SYSTEME DE CONNEXION
+BONJOUR {{ name }}
+CONFIRMEZ VOTRE ADRESSE E-MAIL EN CLIQUANT SUR LE LIEN SUIVANT
+
+lien: https//{{ domain }}{% url "activate" uidb64=uid token=token %}
+{% endautoescape %}
